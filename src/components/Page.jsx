@@ -1,60 +1,71 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import axios from 'axios';
+import API_KEY from './API KEY'; 
 
 function Page() {
-    
-const [data, setData] = useState ({})
-const [longitude, setLongitude] = useState ('')
-const [latitude, setLatitude] = useState ('')
+  const [data, setData] = useState({});
+  const [longitude, setLongitude] = useState('');
+  const [latitude, setLatitude] = useState('');
 
-const url = 'https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=4fc52144c04263e94e6ae947c96be168'
+  const api_key = API_KEY;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
 
-const searchLongitude = (event) => {
-    if (event.key === 'Enter') {
+  const searchLongitude = () => {
     axios.get(url).then((response) => {
-        setData(response.data)
-        console.log(response.data)
-    })
-}
-}
+      setData(response.data);
+      console.log(response.data);
+    });
+  };
 
-const searchLatitude = (event) => {
-    if (event.key === 'Enter') {
+  const searchLatitude = () => {
     axios.get(url).then((response) => {
-        setData(response.data)
-        console.log(response.data)
-    })
-}
-}
+      setData(response.data);
+      console.log(response.data);
+    });
+  };
 
-const handleInputChange = (event) => {
+  const handleInputChange = (event) => {
     const value = parseFloat(event.target.value);
     setLongitude(isNaN(value) ? 0.0 : value);
-    searchLongitude();
   };
 
   const handleInputChange1 = (event) => {
-    const value1 = parseFloat(event.target.value1);
+    const value1 = parseFloat(event.target.value);
     setLatitude(isNaN(value1) ? 0.0 : value1);
-    searchLatitude();
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      searchLongitude();
+    }
+  };
+
+  const handleKeyDown1 = (event) => {
+    if (event.key === 'Enter') {
+      searchLatitude();
+    }
   };
 
   return (
     <div>
-        <div className="search">
-            <input 
-            value={longitude}
-            placeholder='Longitude'
-            onChange={handleInputChange}
-            step="0.01"
-            type="number"/>
-            <input 
-            value={latitude}
-            placeholder='Latitude'
-            onChange={handleInputChange1}
-            step="0.01"
-            type="number"/>
-        </div>
+      <div className="search">
+        <input
+          value={longitude}
+          placeholder="Longitude"
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          step="0.01"
+          type="number"
+        />
+        <input
+          value={latitude}
+          placeholder="Latitude"
+          onChange={handleInputChange1}
+          onKeyDown={handleKeyDown1}
+          step="0.01"
+          type="number"
+        />
+      </div>
       <div className="container">
         <div className="top">
             <div className="location">
