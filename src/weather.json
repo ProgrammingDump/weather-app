@@ -1,0 +1,35 @@
+{
+  "coord": { "lon": 73.0479, "lat": 33.6844 },
+  "weather": [
+    {
+      "id": 804,
+      "main": "Clouds",
+      "description": "overcast clouds",
+      "icon": "04n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 288.61,
+    "feels_like": 288.07,
+    "temp_min": 288.61,
+    "temp_max": 288.61,
+    "pressure": 1020,
+    "humidity": 71
+  },
+  "visibility": 10000,
+  "wind": { "speed": 2.04, "deg": 39, "gust": 1.95 },
+  "clouds": { "all": 100 },
+  "dt": 1701019405,
+  "sys": {
+    "type": 2,
+    "id": 2007435,
+    "country": "PK",
+    "sunrise": 1700963370,
+    "sunset": 1701000044
+  },
+  "timezone": 18000,
+  "id": 1176615,
+  "name": "Islamabad",
+  "cod": 200
+}

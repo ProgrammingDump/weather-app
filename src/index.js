@@ -2,7 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  const unsplashAccessKey = 'R9n42f0NRfz8bbNvboPGX00NQ8zGqSp7p_VtCQ1mg34';
+
+  fetch(`https://api.unsplash.com/photos/random?query=weather&client_id=${unsplashAccessKey}`)
+      .then(response => response.json())
+      .then(data => {
+          var imageUrl = data.urls.regular;
+
+          document.getElementById('background').style.backgroundImage = 'url(' + imageUrl + ')';
+      })
+      .catch(error => {
+          console.error('Error fetching image:', error);
+      });
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -10,8 +25,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
